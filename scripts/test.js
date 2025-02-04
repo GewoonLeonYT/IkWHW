@@ -16,6 +16,7 @@ function getCookie(cookieName) {
 
 {
     let textElement = document.getElementById("api-key");
+    
     if (getCookie("has-token") == "session") {
         var newText = document.createTextNode(sessionStorage.getItem("token"));
     } else if (getCookie("has-token") == "local") {
