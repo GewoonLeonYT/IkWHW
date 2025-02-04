@@ -13,7 +13,7 @@
     <body>
         <?php
             
-            if (isset($_COOKIE["token"])) {
+            if (isset($_COOKIE["has-token"])) {
                 include "subpages/test.html";
             } else {
                 include "subpages/token.html";

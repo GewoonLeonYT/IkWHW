@@ -10,6 +10,8 @@ function makeTempCookie(cookieName, cookieValue) {
     document.cookie = cookieName + "=" + cookieValue + ";path=/";
 }
 
+
+
 document.getElementById("token-block-form").addEventListener("submit", e => {
     e.preventDefault();
     var form = e.target;
@@ -19,9 +21,11 @@ document.getElementById("token-block-form").addEventListener("submit", e => {
     var remember = formData.get("remember-token");
 
     if (remember) {
-        makeCookie("token", token, 28);
+        localStorage.setItem("token", token);
+        makeCookie("has-token", "local", 365);
     } else {
-        makeTempCookie("token", token);
+        sessionStorage.setItem("token", token);
+        makeTempCookie("has-token", "session");
     }
 
     location.reload();
