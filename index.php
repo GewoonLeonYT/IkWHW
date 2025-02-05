@@ -1,23 +1,20 @@
 <?php
-    $pages = array("token", "test");
+    $loadPage = isset($_COOKIE["has-token"]) ? "test" : "token";
+    $styles = array("global", $loadPage);
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <?php
-            foreach ($pages as $page) {
-                echo '<link rel="stylesheet" href="stylesheets/' . $page . '.css">';
+            foreach ($styles as $style) {
+                echo '<link rel="stylesheet" href="stylesheets/' . $style . '.css">';
             }
         ?>
+        <title>IkWHW</title>
     </head>
     <body>
         <?php
-            
-            if (isset($_COOKIE["has-token"])) {
-                include "subpages/test.html";
-            } else {
-                include "subpages/token.html";
-            }
+            include "subpages/" . $loadPage . ".html";
         ?>
     </body>
 </html>
