@@ -1,5 +1,5 @@
 <?php
-    $loadPage = isset($_COOKIE["has-token"]) ? "test" : "token";
+    $loadPage = isset($_COOKIE["has-token"]) ? "main" : "token";
     $styles = array("global", $loadPage);
 ?>
 <!DOCTYPE html>
