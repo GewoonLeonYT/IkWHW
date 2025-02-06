@@ -23,7 +23,7 @@ function makeCookie(cookieName, cookieValue, expirationDuration) {
     document.cookie = cookieName + "=" + cookieValue + ";" + "expires=" + expirationDate + ";path=/"
 }
 
-async function retrieveStations() {
+function retrieveStations() {
     const date = new Date();
     let requestParameters = "?includeNonPlannableStations=false";
     let init = {
@@ -34,16 +34,11 @@ async function retrieveStations() {
     }
  
     fetch(apiURL + "/nsapp-stations/v3" + requestParameters, init)
-    .then(response => {
-        return response.text();
-    })
-    .then(data => sessionStorage.setItem("stations", data))
-    .catch(err => console.error(err));
+    .then(response => response.json())
+    .then(data => populateStations(data));
 }
 
-let token = getCookie("has-token")  == "session" ? sessionStorage.getItem("token") : localStorage.getItem("token");
-retrieveStations().then(() => {
-    let stationsFull = JSON.parse(sessionStorage.getItem("stations"));
+function populateStations(stationsFull) {
     let stationsPayload = stationsFull.payload;
 
     stationsPayload.sort((a, b) => a.names.long.localeCompare(b.names.long))
@@ -54,7 +49,6 @@ retrieveStations().then(() => {
         if (station.country != "NL") continue;
     
         let stationNameLong = station.names.long;
-        let stationNameMedium = station.names.medium;
         let stationCode = station.id.code;
 
         let option = document.createElement("option");
@@ -63,5 +57,8 @@ retrieveStations().then(() => {
         stationsForm.appendChild(option);
     }
     
-    stationsForm.removeAttribute("disabled");
-})
+    stationsForm.removeAttribute("disabled")
+}
+
+let token = getCookie("has-token")  == "session" ? sessionStorage.getItem("token") : localStorage.getItem("token");
+retrieveStations();
