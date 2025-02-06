@@ -45,20 +45,21 @@ let token = getCookie("has-token")  == "session" ? sessionStorage.getItem("token
 retrieveStations().then(() => {
     let stationsFull = JSON.parse(sessionStorage.getItem("stations"));
     let stationsPayload = stationsFull.payload;
+
+    stationsPayload.sort((a, b) => a.names.long.localeCompare(b.names.long))
     
-    let stationsForm = document.getElementsByName("station")[0];
+    let stationsForm = document.getElementById("station");
     
     for (station of stationsPayload) {
         if (station.country != "NL") continue;
     
-        let stationName = station.names.long;
+        let stationNameLong = station.names.long;
+        let stationNameMedium = station.names.medium;
         let stationCode = station.id.code;
-    
+
         let option = document.createElement("option");
         option.setAttribute("value", stationCode);
-        let text = document.createTextNode(`${stationName} (${stationCode})`);
-        option.appendChild(text);
-        
+        option.setAttribute("label", `${stationNameLong} (${stationCode})`);
         stationsForm.appendChild(option);
     }
     
