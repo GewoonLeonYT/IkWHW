@@ -1,3 +1,7 @@
+* {
+    font-family: 'Noto Serif', 'Liberation Serif', 'DejaVu Serif', 'Times New Roman', serif;
+}
+
 .tooltip {
     border-bottom: 1px dotted;
     margin-bottom: 5em;
