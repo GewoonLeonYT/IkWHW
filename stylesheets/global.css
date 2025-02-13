@@ -1,5 +1,68 @@
 * {
-    font-family: 'Noto Serif', 'Liberation Serif', 'DejaVu Serif', 'Times New Roman', serif;
+    /* font-family: 'Noto Serif', 'Liberation Serif', 'DejaVu Serif', 'Times New Roman', serif; */
+    font-family: 'Noto Sans', 'Liberation Sans', 'DejaVu Sans', 'Helvetica', 'Tahoma', 'Arial', sans-serif;
+}
+
+body {
+    background-image: url("../content/background.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-position: 0% 50%;
+    margin: 0;
+}
+
+.header {
+    background-color: white;
+    overflow: hidden;
+    position: sticky;
+    top: 0px;
+    height: 2em;
+    border-bottom: 1px solid grey;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    line-height: 2em;
+}
+
+.header * {
+    border-right: 1px solid grey;
+    padding-right: 1em;
+}
+
+.header *:hover {
+    background-color: darkgrey;
+}
+
+.header * img {
+    border: none;
+    padding-right: 0;
+    margin-right: 0;
+}
+
+.header a {
+    text-align: left;
+    color: inherit;
+    text-decoration: inherit;
+    display: inherit;
+    padding-left: 1em;
+}
+
+.header .logo {
+    padding-left: 0;
+}
+
+.header img {
+    height: 2em;
+    width: auto;
+}
+
+input,button,select {
+    font-size: inherit;
+}
+
+input[type=submit] {
+    padding: 3px 5px;
 }
 
 .tooltip {
@@ -11,11 +74,20 @@
 .centered {
     display: flex;
     justify-content: center;
-    align-items: center;
     text-align: center;
-    min-height: 95vh;
 }
 
+.header .active {
+    background-color: lightgrey;
+}
+
+.header .active:hover {
+    background-color: grey;
+}
+
+.hidden {
+    visibility: hidden;
+}
 
 .center-aligned {
     text-align: center;
@@ -32,6 +104,28 @@
     margin: 5px
 }
 
+.bordered {
+    border: 1px solid grey;
+}
+
 .box {
     background-color: white;
+}
+
+.stack {
+    flex-direction: column;
+}
+
+.loading-spinner {
+    border: 0.3em solid lightgrey; /* Light grey */
+    border-top: 0.3em solid grey; /* Blue */
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    animation: spin 2s linear infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

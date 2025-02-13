@@ -1,14 +1,18 @@
-<!-- Do some stuff here:-->
-<form id="main-form">
-    <fieldset>
-        <label for="station">Which station will you be travelling from?</label><br>
-        <select name="station" id="station" required disabled>
-            <option label="--Select station--" selected></option>
-        </select><br>
-        <label for="budget">What's your budget?</label><br>
-        <label>€ </label><input name="budget" type="number" inputmode="numeric" min="0" step="0.01"
-            placeholder="0.00"><br>
-        <input type="submit" value="OK" name="submit">
-    </fieldset>
-</form>
+<div id="main" class="centered stack">
+    <div id="input">
+        <form id="main-form">
+            <fieldset class="shadow box rounded center-aligned">
+                <label for="station">Which station will you be travelling from?</label><br>
+                <select name="station" id="station" class="rounded shadow bordered" required disabled>
+                    <option label="--Select station--" selected></option>
+                </select><br>
+                <label for="budget">What's your budget?</label><br>
+                <label>€ </label><input name="budget" type="number" inputmode="numeric" min="0" step="0.01"
+                    placeholder="0.00" class="rounded shadow bordered"><br>
+                <input type="submit" value="OK" name="submit" class="rounded box bordered shadow">
+            </fieldset>
+        </form>
+    </div>
+    <div id="loading" class="rounded box shadow bordered hidden"></div>
+</div>
 <script crossorigin src="./scripts/main.js"></script>
