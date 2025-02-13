@@ -3,7 +3,7 @@ const stationsAPI = "nsapp-stations/v3";
 const pricesAPI = "reisinformatie-api/api/v3/price";
 const tripsAPI = "reisinformatie-api/api/v3/trips"
 const bareFare = 112;
-const farePerFareUnit = 20; // This is delibrately an underestimation.
+const farePerFareUnit = 21; // This is delibrately an underestimation.
 let stationsPayload;
 
 let token = getCookie("has-token") == "session" ?
@@ -46,7 +46,6 @@ function getCookie(cookieName) {
 function makeCookie(cookieName, cookieValue, expirationDuration) {
     const date = new Date();
     date.setTime(date.getTime() + (expirationDuration * 24 * 60 * 60 * 1000));
-    // console.log(date.toString());
     let expirationDate = date.toUTCString();
     document.cookie = cookieName + "=" + cookieValue + ";" + "expires="
     + expirationDate + ";path=/"
@@ -85,6 +84,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 document.addEventListener("submit", async e => {
     e.preventDefault();
+    
+    let loadingText = document.createTextNode("Loading...");
+    let loadingDiv = document.getElementById("loading");
+    let loadingSpinner = document.createElement("div");
+    loadingSpinner.classList.add("loading-spinner", "center-aligned");
+    
+    while (loadingDiv.firstChild) {
+        loadingDiv.removeChild(loadingDiv.lastChild);
+    }
+    
+    loadingDiv.appendChild(loadingText);
+    loadingDiv.appendChild(loadingSpinner);
+    loadingDiv.classList.remove("hidden");
+
+
     let form = e.target;
 
     let formData = new FormData(form);
@@ -93,7 +107,7 @@ document.addEventListener("submit", async e => {
 
     let station = stationsPayload.find(station => station.id.code ==
         stationCode);
-    // let stationNameLong = station.names.long;
+    let stationNameLong = station.names.long;
 
     let foundFurthestStation = false;
 
@@ -104,7 +118,7 @@ document.addEventListener("submit", async e => {
         let estimatedPrice = bareFare + (farePerFareUnit * fare_units[toStationCode]);
         let actualPrice;
         let trip;
-        if (estimatedPrice > budgetInCents || toStationCode == stationCode)  continue;
+        if (estimatedPrice > budgetInCents || toStationCode == stationCode) continue;
         let toStation = stationsPayload.find(station => station.id.code ==
             toStationCode);
         let toStationNameLong = toStation.names.long;
@@ -117,18 +131,20 @@ document.addEventListener("submit", async e => {
         let priceResponse = await callAPI(pricesAPI, priceRequestParameters);
         let priceFull = await priceResponse.json();
 
+        loadingText.textContent = `Retrieving price for ${stationNameLong} -> ${toStationNameLong} (${distance.toFixed(2)} km)`;
+
         if (priceResponse.status == 200) {
             actualPrice = priceFull.payload.prices[0].totalPriceInCents;
         } else if (priceResponse.status == 500
-            && priceFull.errors[0].message == 
-            "Multiple routes are possible with different prices." ) {
+        && priceFull.errors[0].message == 
+        "Multiple routes are possible with different prices." ) {
             let tripsResponse = await callAPI(tripsAPI, tripsRequestParameters);
             let tripsFull = await tripsResponse.json();
             let trips = tripsFull.trips;
             let shortestRouteId;
             
             for (trip of trips) {
-                // console.log(trip);
+                if (trip.productFare === undefined) continue;
                 let tripPrice = trip.productFare.priceInCents;
                 let routeId = trip.fareRoute.routeId;
                 if (actualPrice === undefined || tripPrice < actualPrice) {
@@ -138,8 +154,15 @@ document.addEventListener("submit", async e => {
             }
         }
         if (actualPrice <= budgetInCents) {
-            alert(`The furthest station is ${toStationNameLong}, which is ${distance.toFixed(2)} km away and costs ${(actualPrice / 100).toLocaleString({}, {style: "currency",
+            while (loadingDiv.firstChild) {
+                loadingDiv.removeChild(loadingDiv.lastChild);
+            }
+
+            let tripText = document.createTextNode(`The furthest station is ${toStationNameLong}, which is ${distance.toFixed(2)} km away and costs ${(actualPrice / 100).toLocaleString({}, {style: "currency",
             currency:"EUR"})}`);
+
+            loadingDiv.appendChild(tripText);
+
             foundFurthestStation = true;
             break;
         }
