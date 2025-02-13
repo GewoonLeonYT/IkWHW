@@ -12,18 +12,26 @@
             <img src="./content/icon.svg">
             IkWHW
         </a>
-        <a href="how-to" class="active">
+        <a href="how-to">
             How to
         </a>
-        <a href="license">
+        <a href="license" class="active">
             License
         </a>
     </div>
     <div class="centered rounded box shadow bordered">
         <p>
-            In order to use this website, you need an NS API key.<br>
-            This can be acquired via the <a href="https://apiportal.ns.nl">NS API Portal</a>.
+            All files on this website are licensed under the GNU Affero General Public License
+            version 3 or (at your option) any later version, unless otherwise specified.<br>
+            <?php
+                include "../content/COPYING.html";
+            ?>
+            <li>
+                All files contained in the <code>data</code> sub-directory.
+            </li>
+        </ul>
         </p>
+
     </div>
     </body>
 </html>

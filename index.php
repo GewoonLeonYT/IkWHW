@@ -23,6 +23,9 @@
         <a href="./how-to">
             How to
         </a>
+        <a href="license">
+            License
+        </a>
     </div>
         <?php
             include "./subpages/" . $loadPage . ".html";
