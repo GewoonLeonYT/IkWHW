@@ -7,9 +7,8 @@ version 3 or (at your option) any later version, unless otherwise specified.
 
 # Instructions
 To use this program, you must place the root of this repo on a HTTP web server
-with PHP support. You may exclude the `subpages` and `helper` subfolders from
-being accessible from the HTTP server (however the `subpages` must still be
-accessible internally).
+with PHP support. You may exclude the `source_data` and `helper` subfolders from
+being accessible from the HTTP server.
 
 > [!IMPORTANT]
 > This website requires an NS API key with access to the `NS-APP Stations` and
