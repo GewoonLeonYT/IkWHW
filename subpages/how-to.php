@@ -8,14 +8,14 @@
     </head>
     <body>
     <div class="header">
-        <a href="." class="logo">    
+        <a href="." title="IkWilHierWeg" class="logo">    
             <img src="./content/icon.svg">
             IkWHW
         </a>
-        <a href="how-to" class="active">
+        <a href="how-to" title="How to" class="active">
             How to
         </a>
-        <a href="license">
+        <a href="license" title="License">
             License
         </a>
     </div>

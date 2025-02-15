@@ -16,14 +16,14 @@
     </head>
     <body>
     <div class="header">
-        <a href="." class="active logo">    
+        <a href="." title="IkWilHierWeg" class="active logo">    
             <img src="./content/icon.svg">
             IkWHW
         </a>
-        <a href="./how-to">
+        <a title="How to" href="./how-to">
             How to
         </a>
-        <a href="license">
+        <a title="License" href="license">
             License
         </a>
     </div>

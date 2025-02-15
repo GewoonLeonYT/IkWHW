@@ -8,14 +8,14 @@
     </head>
     <body>
     <div class="header">
-        <a href="." class="logo">    
+        <a href="." title="IkWilHierWeg" class="logo">    
             <img src="./content/icon.svg">
             IkWHW
         </a>
-        <a href="how-to">
+        <a title="How to" href="how-to">
             How to
         </a>
-        <a href="license" class="active">
+        <a href="license" title="License" class="active">
             License
         </a>
     </div>
@@ -23,6 +23,7 @@
         <p>
             All files on this website are licensed under the GNU Affero General Public License
             version 3 or (at your option) any later version, unless otherwise specified.<br>
+            All files listed are <strong>NOT</strong> licensed under AGPL-3.0-or-later.
             <?php
                 include "../content/COPYING.html";
             ?>
