@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-import requests
 import math
 import json
+import os
+
+import requests
+
 
 def main():
     with open("./apiKey", "r", encoding="utf8") as f:
-        token: str = f.readline()
+        token: str = f.readline().strip()
+
+    os.makedirs("./data/distances", exist_ok=True)
     
     api_url: str = "https://gateway.apiportal.ns.nl/nsapp-stations/v3"
     timeout: int = 5

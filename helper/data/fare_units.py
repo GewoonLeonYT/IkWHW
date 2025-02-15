@@ -1,8 +1,11 @@
-import pandas
 import json
+import os
+
+import pandas
 
 def main():
     data = pandas.read_csv("./source_data/tariff-distances-2022-01.csv", na_filter=False)
+    os.makedirs("./data/fare_units", exist_ok=True)
     stations: list[str] = list(data["Station"])
     fare_units_amounts = dict()
 

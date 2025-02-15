@@ -1,2 +1,5 @@
 apiKey
+
 data/*
+
+__pycache__/
