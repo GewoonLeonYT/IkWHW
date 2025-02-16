@@ -26,6 +26,9 @@
         <a title="License" href="license">
             License
         </a>
+        <a title="Github" class="right github-logo-link" target="_blank"  href="https://github.com/GewoonLeonYT/IkWHW">
+            <img class="github-logo" src="./content/github-mark.svg">
+        </a>
     </div>
         <?php
             include "./subpages/" . $loadPage . ".html";
