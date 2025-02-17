@@ -24,5 +24,7 @@ Example instructions (where `$APIKEY` is your API key):
 git clone https://github.com/GewoonLeonYT/IkWHW --depth 1
 cd IkWHW
 echo $APIKEY > apiKey
-python ./helper/generate_data.py
+python3 -m venv .venv
+./.venv/bin/pip3 install -r ./helper/requirements.txt
+./.venv/bin/python3 ./helper/generate_data.py
 ```
