@@ -23,10 +23,10 @@
         </a>
     </div>
     <div class="centered rounded box shadow bordered">
-        <p>
+        <span>
             In order to use this website, you need an NS API key.<br>
             This can be acquired via the <a href="https://apiportal.ns.nl">NS API Portal</a>.
-        </p>
+        </span>
     </div>
     </body>
 </html>
