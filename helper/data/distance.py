@@ -39,6 +39,7 @@ def main():
             station_to_latitude = station_to_location["lat"]
             station_to_longitude = station_to_location["lng"]
 
+            # FCC's distance formula
             middle_latitude = (station_from_latitude + station_to_latitude)/2
 
             kpd_lat = 111.13209 - 0.56605*math.cos(math.radians(2*middle_latitude)) + 0.00120*math.cos(math.radians(4*middle_latitude))
