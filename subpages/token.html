@@ -5,10 +5,10 @@
             <label for="token">
                 <span class="tooltip" title="API key is never sent to server">API key:</span>
             </label>
-            <input type="text" name="token" class="rounded shadow bordered" maxlength="32" pattern="[0-9a-fA-F]{32}"
+            <input type="text" name="token" id="token" class="rounded shadow bordered" maxlength="32" pattern="[0-9a-fA-F]{32}"
                 oninvalid="setCustomValidity('Must be 32 digit hex number' )" required><br>
             <label for="remember-token">Remember token?</label>
-            <input type="checkbox" name="remember-token"><br>
+            <input type="checkbox" name="remember-token" id="remember-token"><br>
             <input type="submit" value="OK" name="submit" class="rounded shadow bordered">
         </fieldset>
 
