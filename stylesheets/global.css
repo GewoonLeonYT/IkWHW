@@ -91,13 +91,13 @@ code {
 }
 
 @media (prefers-color-scheme: dark) {
-    .header img {
+    .header img, #licenses img {
         filter: invert(1);
     }
 }
 
 @media (prefers-color-scheme: light) {
-    .header img {
+    .header img, #licenses img {
         filter: none;
     }
 }
