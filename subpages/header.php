@@ -2,7 +2,7 @@
     $page = basename(strtok($_SERVER['REQUEST_URI'], "?"));
 ?>
 <div class="header" aria-label="Navigation bar">
-    <a href="." title="IkWilHierWeg" class="logo <?php echo $page == "IkWHW" || $page == "/" ? "active" : ""?>">    
+    <a href="." title="IkWilHierWeg" class="logo <?php echo $page == "IkWHW" || $page == "" ? "active" : ""?>">
         <img aria-hidden="true" src="./content/icon.svg">
         IkWHW
     </a>
