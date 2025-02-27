@@ -6,6 +6,7 @@
     background-attachment: fixed;
     background-position: 0% 50%;
     min-height: 100vh;
+    color-scheme: light dark;
 }
 
 body {
@@ -17,13 +18,13 @@ code {
 }
 
 .header {
-    background-color: white;
+    background-color: light-dark(white, black);
     overflow: hidden;
     position: fixed;
     width: 100vw;
     top: 0px;
     height: 2em;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid light-dark(grey, white);
     font-size: 1.5rem;
     font-weight: bold;
     display: flex;
@@ -31,7 +32,7 @@ code {
 }
 
 .header * {
-    border-right: 1px solid grey;
+    border-right: 1px solid light-dark(grey, white);
     padding-right: 1em;
 }
 
@@ -58,7 +59,7 @@ code {
 }
 
 .header *:hover {
-    background-color: darkgrey;
+    background-color: light-dark(darkgrey, #909090);
 }
 
 .header * img {
@@ -85,6 +86,22 @@ code {
     width: auto;
 }
 
+.header img:hover {
+    background: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .header img {
+        filter: invert(1);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .header img {
+        filter: none;
+    }
+}
+
 .header .github-logo {
     height: 1.5em;
 }
@@ -96,7 +113,7 @@ code {
 .header .right {
     margin-left: auto;
     border-right: none;
-    border-left: 1px solid grey;
+    border-left: 1px solid light-dark(grey, white);
 }
 
 input,button,select {
@@ -120,11 +137,11 @@ input[type=submit] {
 }
 
 .header .active {
-    background-color: lightgrey;
+    background-color: light-dark(lightgrey, grey);
 }
 
 .header .active:hover {
-    background-color: grey;
+    background-color: light-dark(grey, rgb(88, 88, 88));
 }
 
 .hidden {
@@ -148,11 +165,11 @@ input[type=submit] {
 }
 
 .bordered, #results > div {
-    border: 1px solid grey;
+    border: 1px solid light-dark(grey, white);
 }
 
 .box, #results > div {
-    background-color: white;
+    background-color: light-dark(white, black);
     padding: 0.5em 0.5em;
 }
 
@@ -172,24 +189,20 @@ input[type=submit] {
 
 ins {
     text-decoration: none;
-    color: crimson;
+    color: light-dark(crimson, hsl(348, 83%, 57%)); 
 }
 
 del {
-    color: #606060;
+    color: light-dark(#606060, #9f9f9f);
 }
 
 .stack {
     flex-direction: column;
 }
 
-.original-time {
-    
-}
-
 .loading-spinner {
-    border: 0.3em solid lightgrey;
-    border-top: 0.3em solid grey;
+    border: 0.3em solid light-dark(lightgrey, darkgrey);
+    border-top: 0.3em solid light-dark(grey, white);
     border-radius: 50%;
     width: 1em;
     height: 1em;
