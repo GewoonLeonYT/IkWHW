@@ -1,5 +1,5 @@
 # IkWilHierWeg
-Programma om weg te komen van de sleur.
+Website om weg te komen van de sleur.
 
 # License
 All files in this repo are licensed under the GNU Affero General Public License
