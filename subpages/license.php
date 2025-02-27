@@ -7,21 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div class="header">
-            <a href="." title="IkWilHierWeg" class="logo">    
-                <img src="./content/icon.svg">
-                IkWHW
-            </a>
-            <a title="How to" href="how-to">
-                How to
-            </a>
-            <a href="license" title="License" class="active">
-                License
-            </a>
-            <a title="Github" class="right github-logo-link" target="_blank"  href="https://github.com/GewoonLeonYT/IkWHW">
-                <img class="github-logo" src="./content/github-mark.svg">
-            </a>
-        </div>
+        <?php 
+            include "../subpages/header.php";
+        ?>
         <div class="centered rounded box shadow bordered">
             <span>
                 All files on this website are licensed under the GNU Affero General Public License

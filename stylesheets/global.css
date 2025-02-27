@@ -129,6 +129,7 @@ input[type=submit] {
 
 .hidden {
     visibility: hidden;
+    display: none;
 }
 
 .center-aligned {
@@ -137,26 +138,53 @@ input[type=submit] {
     margin-right: auto;
 }
 
-.rounded {
+.rounded, #results > div {
     border-radius: 8px;
 }
 
-.shadow {
+.shadow, #results > div {
     box-shadow: 5px 5px rgba(0, 0, 0, 50%);
     margin: 5px
 }
 
-.bordered {
+.bordered, #results > div {
     border: 1px solid grey;
 }
 
-.box {
+.box, #results > div {
     background-color: white;
     padding: 0.5em 0.5em;
 }
 
+#results td:nth-of-type(2n+2) {
+    text-align: right;
+}
+
+#results > div table {
+    text-align: initial;
+    width: 100%;
+}
+
+#results a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+ins {
+    text-decoration: none;
+    color: crimson;
+}
+
+del {
+    color: #606060;
+}
+
 .stack {
     flex-direction: column;
+}
+
+.original-time {
+    
 }
 
 .loading-spinner {
