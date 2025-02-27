@@ -32,13 +32,16 @@ let stationsPayload;
 let token = getCookie("has-token") == "session" ?
 sessionStorage.getItem("token") : localStorage.getItem("token");
 
-async function callAPI(apiSubPage, requestParameters) {
+async function callAPI(apiSubPage, requestParameters, cache = "") {
     let fullURL = `${urlAPI}/${apiSubPage}?${requestParameters}`;
     let init = {
         method: "GET",
         headers: {
             'Ocp-Apim-Subscription-Key': token,
         },
+    }
+    if (cache !== "") {
+        init.cache = cache;
     }
 
     const response = await fetch(fullURL, init);
@@ -173,7 +176,7 @@ document.addEventListener("submit", async e => {
         } else if (priceResponse.status == 500 
         && priceFull.errors[0].message == 
         "Multiple routes are possible with different prices." ) {
-            let tripsResponse = await callAPI(tripsAPI, tripsRequestParameters);
+            let tripsResponse = await callAPI(tripsAPI, tripsRequestParameters, "no-store");
             let tripsFull = await tripsResponse.json();
             trips = tripsFull.trips;
             
@@ -187,7 +190,7 @@ document.addEventListener("submit", async e => {
         }
         if (actualPrice <= budgetInCents) {
             if (trips == undefined) {
-                tripsResponse = await callAPI(tripsAPI, tripsRequestParameters);
+                tripsResponse = await callAPI(tripsAPI, tripsRequestParameters, "no-store");
                 tripsFull = await tripsResponse.json();
                 trips = tripsFull.trips;
             }
@@ -223,8 +226,6 @@ document.addEventListener("submit", async e => {
                 let actualJourneyLength = trip.actualDurationInMinutes;
                 let plannedDepartureTime = new Date(tripLegs[0].origin.plannedDateTime);
                 let actualDepartureTime = new Date(tripLegs[0].origin.actualDateTime ? tripLegs[0].origin.actualDateTime : tripLegs[0].origin.plannedDateTime);
-                // console.log(tripLegs[0].origin.actualDateTime);
-                // console.log(actualDepartureTime);
                 let plannedArrivalTime = new Date(tripLegs[tripLegs.length - 1].destination.plannedDateTime);
                 let actualArrivalTime = new Date(actualDepartureTime.getTime() + actualJourneyLength*60*1000);
                 let differenceJourneyLength = actualJourneyLength - plannedJourneyLength;
@@ -300,10 +301,8 @@ document.addEventListener("submit", async e => {
                 let tableRow2Column2 = document.createElement("td");
                 let plannedDuration = new Date(0);
                 plannedDuration.setMinutes(plannedJourneyLength);
-                console.log(plannedDuration);
                 let actualDuration = new Date(0);
                 actualDuration.setMinutes(actualJourneyLength);
-                console.log(actualDuration);
                 let plannedDurationString = timeFormatterUTC.format(plannedDuration);
                 let actualDurationString = timeFormatterUTC.format(actualDuration);
                 let plannedDurationText = document.createTextNode(plannedDurationString);
