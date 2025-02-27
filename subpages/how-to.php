@@ -12,7 +12,7 @@
         ?>
         <div class="centered rounded box shadow bordered">
             <span>
-                In order to use this website, you need an NS API key.<br>
+                In order to use this website, you need an NS API key with access to the <code>NS-APP Stations</code> and <code>Reisinformatie</code> APIs.<br>
                 This can be acquired via the <a href="https://apiportal.ns.nl">NS API Portal</a>.
             </span>
         </div>

@@ -2,10 +2,11 @@
     font-family: 'Noto Sans', 'Liberation Sans', 'DejaVu Sans', 'Helvetica', 'Tahoma', 'Arial', sans-serif;
     background-image: url("../content/background.jpg");
     background-size: cover;
-    background-repeat: repeat-y;
+    background-repeat: space;
     background-attachment: fixed;
     background-position: 0% 50%;
     min-height: 100vh;
+    min-width: fit-content;
     color-scheme: light dark;
 }
 
@@ -21,7 +22,7 @@ code {
     background-color: light-dark(white, black);
     overflow: hidden;
     position: fixed;
-    width: 100vw;
+    min-width: 100vw;
     top: 0px;
     height: 2em;
     border-bottom: 1px solid light-dark(grey, white);
@@ -118,6 +119,7 @@ code {
 
 input,button,select {
     font-size: inherit;
+    max-width: 80%;
 }
 
 input[type=submit] {
