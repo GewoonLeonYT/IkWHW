@@ -3,7 +3,7 @@ const stationsAPI = "nsapp-stations/v3";
 const pricesAPI = "reisinformatie-api/api/v3/price";
 const tripsAPI = "reisinformatie-api/api/v3/trips"
 const bareFare = 112;
-const farePerFareUnit = 21; // This is delibrately an underestimation.
+const farePerFareUnit = 19; // This is delibrately an underestimation.
 let distanceUnitElement = document.createElement("abbr");
 distanceUnitElement.setAttribute("title", "kilometers");
 distanceUnitElement.appendChild(document.createTextNode("km"));
@@ -148,14 +148,17 @@ document.addEventListener("submit", async e => {
     let cheapestTrips;
 
     for (let toStationCode in distances) {
-        let estimatedPrice = bareFare + (farePerFareUnit * fare_units[toStationCode]);
+        /* For NS, starting at 119 fare units - because it can't ever be simple -
+        the price only goes up by 10; this compensates for that */
+        let estimatedPrice = bareFare + (farePerFareUnit * Math.min(119, fare_units[toStationCode])) + ((farePerFareUnit / 2) * Math.max(0, fare_units[toStationCode] - 119));
         let actualPrice;
         let trip;
-        if (estimatedPrice > budgetInCents || toStationCode == stationCode) continue;
-
         let toStation = stationsPayload.find(station => station.id.code ==
             toStationCode);
         let toStationNameLong = toStation.names.long;
+        console.log(`${toStationNameLong}: est. price ${estimatedPrice}, fare units ${fare_units[toStationCode]}`);
+        if (estimatedPrice > budgetInCents || toStationCode == stationCode) continue;
+
         let distance = distances[toStationCode];
         let priceRequestParameters = `fromStation=${stationCode}&toStation=`
         + `${toStationCode}&adults=1&children=0&travelClass=SECOND_CLASS`
