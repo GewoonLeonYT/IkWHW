@@ -3,7 +3,8 @@ const stationsAPI = "nsapp-stations/v3";
 const pricesAPI = "reisinformatie-api/api/v3/price";
 const tripsAPI = "reisinformatie-api/api/v3/trips"
 const bareFare = 112;
-const farePerFareUnit = 19; // This is delibrately an underestimation.
+const farePerFareUnit = 18; // This is delibrately an underestimation.
+const reducedFarePerFareUnit = 5; // I'm just making up numbers at this point
 let distanceUnitElement = document.createElement("abbr");
 distanceUnitElement.setAttribute("title", "kilometers");
 distanceUnitElement.appendChild(document.createTextNode("km"));
@@ -150,7 +151,7 @@ document.addEventListener("submit", async e => {
     for (let toStationCode in distances) {
         /* For NS, starting at 119 fare units - because it can't ever be simple -
         the price only goes up by 10; this compensates for that */
-        let estimatedPrice = bareFare + (farePerFareUnit * Math.min(119, fare_units[toStationCode])) + ((farePerFareUnit / 2) * Math.max(0, fare_units[toStationCode] - 119));
+        let estimatedPrice = bareFare + (farePerFareUnit * Math.min(119, fare_units[toStationCode])) + (reducedFarePerFareUnit * Math.max(0, fare_units[toStationCode] - 119));
         let actualPrice;
         let trip;
         if (estimatedPrice > budgetInCents || toStationCode == stationCode) continue;
