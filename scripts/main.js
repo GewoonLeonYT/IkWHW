@@ -153,12 +153,11 @@ document.addEventListener("submit", async e => {
         let estimatedPrice = bareFare + (farePerFareUnit * Math.min(119, fare_units[toStationCode])) + ((farePerFareUnit / 2) * Math.max(0, fare_units[toStationCode] - 119));
         let actualPrice;
         let trip;
+        if (estimatedPrice > budgetInCents || toStationCode == stationCode) continue;
+        
         let toStation = stationsPayload.find(station => station.id.code ==
             toStationCode);
         let toStationNameLong = toStation.names.long;
-        console.log(`${toStationNameLong}: est. price ${estimatedPrice}, fare units ${fare_units[toStationCode]}`);
-        if (estimatedPrice > budgetInCents || toStationCode == stationCode) continue;
-
         let distance = distances[toStationCode];
         let priceRequestParameters = `fromStation=${stationCode}&toStation=`
         + `${toStationCode}&adults=1&children=0&travelClass=SECOND_CLASS`
