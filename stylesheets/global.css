@@ -1,6 +1,9 @@
 :root {
     font-family: 'Noto Sans', 'Liberation Sans', 'DejaVu Sans', 'Helvetica', 'Tahoma', 'Arial', sans-serif;
-    background-image: url("../content/background.jpg");
+    background-image: image-set(
+        url("../content/background.avif") type("image/avif"),
+        url("../content/background.webp") type("image/webp")
+    );
     background-size: cover;
     background-repeat: space;
     background-attachment: fixed;
