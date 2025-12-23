@@ -7,8 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <?php 
-            include "/subpages/header.php";
+        <?php
+            include "header.php";
         ?>
         <div class="centered rounded box shadow bordered">
             <span>

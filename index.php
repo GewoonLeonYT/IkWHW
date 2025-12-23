@@ -16,10 +16,10 @@
     </head>
     <body>
         <?php
-            include "/subpages/header.php";
+            include "subpages/header.php";
         ?>
         <?php
-            include "/subpages/" . $loadPage . ".html";
+            include "subpages/" . $loadPage . ".html";
         ?>
     </body>
 </html>
