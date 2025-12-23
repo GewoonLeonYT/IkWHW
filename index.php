@@ -7,19 +7,19 @@
     <head>
         <?php
             foreach ($styles as $style) {
-                echo '<link rel="stylesheet" href="./stylesheets/' . $style . '.css">';
+                echo '<link rel="stylesheet" href="/stylesheets/' . $style . '.css">';
             }
         ?>
         <title>IkWHW</title>
-        <link rel="icon" type="image/svg+xml" href="./content/favicon.svg">
+        <link rel="icon" type="image/svg+xml" href="/content/favicon.svg">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <?php
-            include "./subpages/header.php";
+            include "/subpages/header.php";
         ?>
         <?php
-            include "./subpages/" . $loadPage . ".html";
+            include "/subpages/" . $loadPage . ".html";
         ?>
     </body>
 </html>
